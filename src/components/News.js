@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import NewsItem from './NewsItem'
 
 export class News extends Component {
-    articles=[
+    articles = [
         {
             "source": {
                 "id": "news24",
@@ -41,35 +41,34 @@ export class News extends Component {
             "content": "Last week, we at ESPNcricinfo did something we have been thinking of doing for eight years now: pretend-live ball-by-ball commentary for a classic cricket match. We knew the result, yes, but we tried… [+6823 chars]"
         }
     ]
-    constructor(){
+    constructor() {
         super();
-        this.state={
-            articles:this.articles,
-            loading:false
+        this.state = {
+            articles: this.articles,
+            loading: false
         }
     }
-  render() {
-    return (
-      <div className='container my-3'>
-            This is a News Component from NewsMonkey
-            <div className="row">
-                <div className="col-md-4 my-3">
-                    <NewsItem title={"MyTitle"} description={"Mydesc"}/>
+    render() {
+        return (
+            <div className='container my-3'>
+                This is a News Component from NewsMonkey
+                <div className="row">
+                    {
+                    this.articles.map((element) => {
+                        return (
+                            <div className="col-md-4 my-3">
+                                <NewsItem key={element.url} title={element.title}
+                                    description={element.description}
+                                    imageUrl={element.urlToImage}/>
+                            </div>
+                        )
+                    })
+                }
                 </div>
-                <div className="col-md-4">
-                    <NewsItem title={"MyTitle"} description={"Mydesc"}/>
-                </div>
-                <div className="col-md-4">
-                    <NewsItem title={"MyTitle"} description={"Mydesc"}/>
-                </div>
-                <div className="col-md-4">
-                    <NewsItem title={"MyTitle"} description={"Mydesc"}/>
-                </div>
+
             </div>
-            
-      </div>
-    )
-  }
+        )
+    }
 }
 
 export default News
